@@ -18,11 +18,33 @@
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
-const { conn } = require('./src/db.js');
+require('dotenv').config();
+const axios = require('axios');
+const {API_KEY} = process.env;
+const { conn, Videogame, Category, Platform } = require('./src/db.js');
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
-  server.listen(3001, () => {
-    console.log('%s listening at 3001'); // eslint-disable-line no-console
+conn.sync({force:true}).then(() => {
+  server.listen(3001, async () => {
+    try{
+      console.log('%s listening at 3001'); // eslint-disable-line no-console
+
+      const dataGenres = await axios.get(`https://api.rawg.io/api/genres?key=5b9a51ae13e147b7bccf3a7f55d6a2ac`);
+      const genres = dataGenres.data.results.map(genre => {return{id: genre.id, name: genre.name}});
+
+      const dataPlatforms = await axios.get(`https://api.rawg.io/api/platforms/lists/parents?key=5b9a51ae13e147b7bccf3a7f55d6a2ac`);
+      var platforms = [];
+      dataPlatforms.data.results.forEach(result => {
+        if(result.platforms.length > 0){
+          result.platforms.forEach(plat => platforms.push({id: plat.id, name: plat.name}));
+        }
+      });
+
+      genres.forEach(genre => Category.create(genre));
+      platforms.forEach(plat => Platform.create(plat));
+    }
+    catch(error){
+      console.error(error);
+    }
   });
 });
