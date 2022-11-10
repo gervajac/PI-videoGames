@@ -24,15 +24,15 @@ export default function Home() {
     
     
     const [page, setPaginated] = useState(1);
-    const [recipesPage, setRecipesPage] = useState(9);
+    const [gamesPage, setgamesPage] = useState(15);
     const [isFiltered, setIsFiltered] = useState(false)
-    const quantityRecipesPage = page * recipesPage;
-    const firstRecipePage = quantityRecipesPage - recipesPage;
-    const showRecipesPage = allGames.slice(firstRecipePage, quantityRecipesPage);
-    const showGamesPage = gamesFiltered.slice(firstRecipePage, quantityRecipesPage);
+    const quantityGamesPage = page * gamesPage;
+    const firstGamePage = quantityGamesPage - gamesPage;
+    const showRecipesPage = allGames.slice(firstGamePage, quantityGamesPage);
+    const showGamesPage = gamesFiltered.slice(firstGamePage, quantityGamesPage);
     const arrayToMap = isFiltered ? showGamesPage : showRecipesPage
-    
-    
+
+        
     const paged = function(pageNumber) {
         setPaginated(pageNumber)
     };
@@ -89,7 +89,7 @@ export default function Home() {
     return(
         <div className={styles.home}>
             <div className={styles.one}>
-            <h1 className={styles.initialMsg}>Explore the games!</h1>
+            <h1>Explore the games</h1>
             </div>
             <div>
                 <button className={styles.refreshButton} onClick={handleClick}>Refresh games</button>
@@ -97,37 +97,38 @@ export default function Home() {
                     <button className={styles.addButton}>Add new game</button>
                 </Link>
             </div>
-            <div>
-            <label className={styles.filters}>Sort:</label>
-             <select name="categories" onChange={(e) => HandleFilteredByGenre(e)} >
-                <option value="default">TODOS LOS GENEROS</option>
+            <div className={styles.selectt}>
+            <label className={styles.filters}>Sort by:</label>
+             <select className={styles.selectt} name="categories" onChange={(e) => HandleFilteredByGenre(e)} >
+                <option value="default">GENRES</option>
                   {allGenres.map(categories =>
                  <option key={categories.id} value={categories.name}>
                  {categories.name.toUpperCase()}
                 </option>
                  )}
             </select>
-            <select name="platforms" onChange={(e) => HandleFilteredByPlatform(e)} >
-                <option value="default">TODAS LAS PLATAFORMAS</option>
+            <select className={styles.selectt} name="platforms" onChange={(e) => HandleFilteredByPlatform(e)} >
+                <option value="default">PLATFORMS</option>
                   {allPlatforms.map(platforms =>
                  <option key={platforms.id} value={platforms.name}>
                  {platforms.name.toUpperCase()}
                 </option>
                  )}
           </select>
-                <select className={styles.select} name="alphabetical" onChange={e => handleAlphabeticalSort(e)}>
+                <label className={styles.filters}>Order by:</label>
+                <select className={styles.selectt} name="alphabetical" onChange={e => handleAlphabeticalSort(e)}>
                     <option selected disabled>Alphabetical</option>
                     <option value="atoz">A to Z</option>
                     <option value="ztoa">Z to A</option>
                 </select>
-                <select name="numerical" onChange={(e) => handleOrderByRating(e)}>
+                <select className={styles.selectt} name="numerical" onChange={(e) => handleOrderByRating(e)}>
                      <option selected disabled> Rating </option>
                      <option value="asc">From Min to Max</option>
                     <option value="desc">From Max to Min</option>
                  </select>
             </div>
                 
-                 <Paginated recipesPage={recipesPage} allRecipes={allGames.length} paged={paged}/>
+                 <Paginated gamesPage={gamesPage} allGamesPerPage={allGames.length} paged={paged}/>
            
             <Searchbar/>
 
@@ -144,7 +145,9 @@ export default function Home() {
                                     img={e.background_image}
                                     rating={e.rating}
                                     categories={e.categories}
-                                    platforms={e.platforms}                           
+                                    genres={e.genres}
+                                    platforms={e.platforms}    
+                                    platform={e.platform}                       
                                      />
                             </Link>
                         </div>
@@ -153,7 +156,7 @@ export default function Home() {
             }
             </div>            
             
-                <Paginated recipesPage={recipesPage} allGames={allGames.length} paged={paged}/>
+                <Paginated gamesPage={gamesPage} allGamesPerPage={allGames.length} paged={paged}/>
             
                
 

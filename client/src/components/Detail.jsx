@@ -37,12 +37,7 @@ export default function GameDetails(props) {
 
             <div className={style.ddsh}>
                 <h2 className={style.texts}>Genre: </h2> 
-                {gameDetails.genres ? gameDetails.genres.map(e => {
-                    return(
-                        <h2 className={style.dishesanddiets} key={e}>{e.name?? e}</h2>
-                    )
-                }) :
-                gameDetails.diets?.map(e => {
+                {gameDetails.genres?.map(e => {
                     return(
                         <h2 className={style.dishesanddiets} key={e.name?? e}>{e.name?? e}</h2>
                     )
@@ -59,7 +54,6 @@ export default function GameDetails(props) {
                     )
                 }) :
                 gameDetails.platform?.map(e => {
-                    console.log(e, "eeeeeeee")
                     return(
                         <h2 className={style.dishesanddiets} key={e.name?? e}>{e.name?? e}</h2>
                     )

@@ -1,11 +1,11 @@
 import React from "react";
 import styles from  './styles/Paginated.module.css';
 
-export default function paginated({recipesPage, allRecipes, paged}) {
+export default function paginated({gamesPage, allGamesPerPage, paged}) {
     
     const pages = [];
         
-    for (let i = 1; i <= Math.ceil(allRecipes/recipesPage); i++) {
+    for (let i = 1; i <= Math.ceil(allGamesPerPage/gamesPage); i++) {
         pages.push(i)
     };    
       
@@ -16,7 +16,6 @@ export default function paginated({recipesPage, allRecipes, paged}) {
             {pages.length <= 1 ? 
             <></> :
             <nav className={styles.pagination}>
-                
                 <ul className={styles.pages}>
                     {pages?.map(p =>(
                         <li className={styles.page} key={p}>
@@ -24,7 +23,6 @@ export default function paginated({recipesPage, allRecipes, paged}) {
                         </li>
                     ))}
                 </ul>
-    
             </nav>
             }  
 

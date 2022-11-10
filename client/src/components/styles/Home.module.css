@@ -8,23 +8,65 @@
 
 
 
-.initialMsg {
-    display: flex;
-    color: rgb(6, 6, 75);
-    font-style: italic;
-    font-weight: 700;    
-    text-shadow: 6px 4px 5px rgba(0,0,0,0.43);
-    background: rgba(52, 47, 47, 0.56);
+h1 {
+    position: relative;
+    padding: 20px;
+    margin: 0;
+    font-family: "Raleway", sans-serif;
+    font-weight: 300;
+    font-size: 40px;
+    color: #080808;
+    -webkit-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;
+    background: darkgrey;
     border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(3.3px);
-    -webkit-backdrop-filter: blur(3.3px);
-    border: 1px solid rgba(52, 47, 47, 1);
-}
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+  
+  h1 span {
+    display: block;
+    font-size: 0.5em;
+    line-height: 1.3;
+  }
+  h1 em {
+    font-style: normal;
+    font-weight: 600;
+  }
+  
+  /* === HEADING STYLE #1 === */
+  .one h1 {
+    text-align: center;
+    text-transform: uppercase;
+    padding-bottom: 5px;
+  }
+  .one h1:before {
+    width: 28px;
+    height: 5px;
+    display: block;
+    content: "";
+    position: absolute;
+    bottom: 3px;
+    left: 50%;
+    margin-left: -14px;
+    background-color: #080808;
+  }
+  .one h1:after {
+    width: 100px;
+    height: 1px;
+    display: block;
+    content: "";
+    position: relative;
+    margin-top: 25px;
+    left: 50%;
+    margin-left: -50px;
+    background-color: #000000;
+  }
 
 .refreshButton {
-    color: rgb(231, 218, 218);
-    background-color: #5a5a5a;
+    color: black;
+    background-color: darkgray;
     font-size: 17px;
     text-align: center;
     padding: 10px 25px;
@@ -40,8 +82,8 @@
 }
 
 .addButton {
-    color: rgb(231, 218, 218);
-    background-color: #5a5a5a;
+    color: black;
+    background-color: darkgray;
     font-size: 17px;
     text-align: center;
     padding: 10px 25px;
@@ -58,21 +100,15 @@
 
 .filters {
     display: flex;
-    color: rgb(6, 6, 75);
+    font-family: "Raleway", sans-serif;
+    color: black;
     font-style: italic;
     font-weight: 500;    
-    text-shadow: 6px 4px 5px rgba(0,0,0,0.43);
     padding: 10px 3px 0px;
     
 }
 
-.select {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-}
+
 
 .eachRecipe {
     display: flex;
@@ -96,3 +132,37 @@
     padding: 10px;
     
 }
+
+.select{
+    display: flex;
+    
+   
+    
+}
+
+
+.selectt {
+    display:flex;
+    justify-content: center; 
+    width: 100%;
+    min-width: 15ch;
+    max-width: 30ch;
+    border-inline-start-color: #161515;
+    border-radius: 0.25em;
+    padding: 3px;
+    margin: 10px;
+    font-size: 1.25rem;
+    cursor: pointer;
+    line-height: 1.1;
+    border-color: black;
+    background-color: darkgray;
+
+
+  }
+
+
+
+
+
+
+

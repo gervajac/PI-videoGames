@@ -8,7 +8,8 @@ let prevId = 1;
 export default function Games(props) {
 
 
-    const { img, name, rating, categories, platforms } = props
+    const { img, name, rating, categories, platforms, platform, genres } = props
+ 
     return (
         <div className={styles.recipe}>
             
@@ -23,18 +24,30 @@ export default function Games(props) {
                 <h3>⭐ {rating}</h3>
             </div>
             <div>
-                 {categories?.map(e => {
+                 {categories?.length > 0 ? categories.map(e => {
                     return (
                         <h5 className={styles.genres} key={prevId++}>{e.name}</h5>
                     )
-                })}
+                }):
+                    genres?.map(e => {
+                        return(
+                            <h5 className={styles.genres} key={e.name?? e}>{e.name?? e}</h5>
+                        )
+                    })
+                }
             </div>
             <div className={styles.platformc}>
-                {platforms?.map(e => {
+                {platforms?.length > 0 ? platforms?.map(e => {
                     return (
                         <h5 className={styles.platforms} key={prevId++}>{e.name}</h5>
                     )
-                })}
+                }):
+                platform?.map(e => {
+                    return(
+                        <h5 className={styles.platforms} key={e.name?? e}>{e.name?? e}</h5>
+                    )
+                })
+            }
             </div>
             
         </div>
